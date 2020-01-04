@@ -1,0 +1,43 @@
+Name: Le Minh Dang,Zi Xue Lim
+CCID : mldang, zixue
+ID #: 1581106,1573849
+CMPUT 274 Fall 2019
+
+Assignment 2 Part 2: Encrypted Arduino Communication
+
+Included Files:
+	* encrypted_communication_part2.cpp
+	* Makefile
+	* README
+
+Accessories:
+	
+	* 2 Arduino Mega 2560
+	* 2 Resistors (any values from 500 Ohms and up)
+
+Wiring Instructions:
+
+	Wire RX3 and TX3 from Arduino Mega to TX3 and RX3 to the other Arduino Mega, GND to GND.
+	
+	Connect Resistors from pin 13 of Arduino Mega to either +5V or GND to be regconized as Server or Client
+
+Running Instructions:
+
+	1. Connect both Arduino Mega to computer and select the correct port with "arduino-port-select".
+	2. Run 2 terminals where the makefile and encrypted_communication_part2.cpp is.
+	3. Use Command "make upload-0 && serial-mon-0" on the first terminal; "make upload-1 && serial-	mon-1" on the second terminal.
+	4. Wait till the Arduino reports "Data Exchange Ready!"
+	5. Type in the terminal to see the result.
+
+Notes and Assumptions:
+
+	This program is to communicate between 2 Arduinos using RSA encryption. The Arduino will generate the key and do handshake to retrieve the other key and modulus. Then, it will have to decrypt the recieved message from the other Arduino and will have to encrypt the messages when it sends to the other Arduino and print them out on serial monitor.
+
+	This firmware assumes that you have set your serial monitor to baudrate 9600. Any other baudrate (115200, 250000, ..) can cause the error or not running correctly. Make sure you have set your baudrate correctly. This applies for serial3 if you are running on different solution, the baudrate must be 9600.
+
+	For security reasons, we hide the generated keys. But if you want to see the generated key as well as the receiving keys, uncomment "#define debug"
+	
+	When the Arduino is server, rarely it doesn't pick up the 'A', and it stays in handshake mode. If you encountered, just need to reset the client.
+
+
+
